@@ -1,0 +1,49 @@
+create database MycolllegeVCET
+use MycolllegeVCET
+create table MyFirstTable(ID int,Name varchar(50),Location varchar(50))
+insert into MyFirstTable(ID,Name,Location) values (7,'Divya','Erode')
+select * from MyFirstTable
+
+create table MyEmployee(
+EmpId int primary key identity(1,1),
+EmpName varchar(50) not null,  
+EmpAge int check(EmpAge>18),
+EmpSalary int check(EmpSalary>25000),
+EmpExperience int,
+EmpPhone varchar(50) unique, 
+EmpLocation varchar(30) default 'Bangalore') 
+
+insert into MyEmployee(EmpName,EmpAge,EmpSalary,EmpExperience,EmpPhone,EmpLocation) values ('divya',19,30000,3,9927463727,'Bangalore')
+select*from MyEmployee
+
+create table DeptTable(
+Did int primary key identity(1,1),
+Dname varchar(30),
+Dhead varchar(30),
+Dphone varchar(30))
+
+create table EmpTable(
+Eid int primary key identity(1,1),
+Ename varchar(30),
+Eage int,
+Elocation varchar(30),
+Did int foreign key references DeptTable(Did))
+
+select*from DeptTable
+select*from EmpTable
+
+insert into DeptTable(Dname,Dhead,Dphone) values('.Net','sam','9876543276'),('Java','tom','1234567890'),('PHP','Ram','5432167890')
+insert into DeptTable(Dname,Dhead,Dphone) values('android','peter','7654321890')
+
+select*from DeptTable
+
+insert into EmpTable(Ename,Eage,Elocation,Did) values ('divya',20,'erode',1)
+
+
+
+
+insert into EmpTable(Ename,Eage,Elocation,Did) values ('kumar',22,'chennai',2),('siva',27,'erode',1),('sita',29,'chennai',3),('raja',22,'erode',1),('ram',23,'chennai',2),('priya',24,'bangalore',1)
+insert into EmpTable(Ename,Eage,Elocation,Did) values ('rajini',22,'bangalore',4)
+
+  
+select*from EmpTable join DeptTable on EmpTable.Did=DeptTable.Did
